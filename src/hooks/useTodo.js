@@ -3,20 +3,22 @@ import { useState} from 'react';
 
 const UseTodo = (initialValue) => {
   const [tasks, setTasks] = useState(initialValue);
+
   return {
     tasks,
-    addTask: () => {
+    addTask: (value) => {
       const newTask = {
         id: Date.now(),
-        // body: value.body,
+        body: value.body,
         isDone: false,
       };
-      setTasks([...tasks, newTask]);
-      
-      
+      setTasks([...tasks, newTask]); 
+    },
+    setDoneTask: (...tasks) => {
+      setTasks(tasks.map((task) => ({...task, isDone:true(task.id)})))
     },
     deleteTask: (id)=> {
-        setTasks(tasks.filter((task) => task.id !==id));
+        setTasks(tasks.filter((task) => task.id!==id));
 },};
 }
 
